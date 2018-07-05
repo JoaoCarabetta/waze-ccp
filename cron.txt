@@ -1,0 +1,1 @@
+* * * * * cd /Users/joaoc/Documents/Projects/waze-ccp/scripts/; python3 capture.py
