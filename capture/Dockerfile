@@ -1,4 +1,4 @@
-FROM alpine
+FROM python:3.6.5-alpine3.7
 
 ENV USER_NAME=kratos
 ENV USER_HOME=/home/$USER_NAME
@@ -25,11 +25,11 @@ RUN set -x \
 
 # Python dependencies
 RUN set -x \
-    && apk add --no-cache py-virtualenv python3 \
+    && apk add --no-cache py-virtualenv \
     # MySQL / MariaDB
-    && apk add --no-cache mariadb mariadb-dev mariadb-client
+    && apk add --update --no-cache mariadb-client-libs \
+	&& apk add --no-cache --virtual .build-deps mariadb-dev gcc musl-dev
 
-RUN apk add --no-cache gcc
 
 ADD ./entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
