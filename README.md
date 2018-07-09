@@ -27,3 +27,24 @@ Acredito que aí já tenha um pipeline básico do que deve ser feito pelo CLI. N
 4. Esse ambiente, inicialmente python, deve permitir que o usuário instale outros pacotes facilmente.
 5. Os projetos feitos através dessa plataforma são integráveis, portanto, o projeto de uma cidade pode ser usado para outra com tão facilmente quanto `waze-ccp get <url>`
 
+## Banco de dados
+
+**Simplicidade > Performance**
+
+
+1. Instalador
+    Função: Instalar os ambientes
+    Descrição: O usuários precisará inserir os metadados necessários para incializar a captura. Também, o instalador trará informações importantes sobre a instalação, ex: espaço necessário no disco em 1 mês, 6 meses, 1 ano.
+
+2. Captura
+    Função: Carregar dados no banco
+    Descrição: Executa um `worker` em background que tem a função de monitorar a API do Waze e fazer inserts sucessivos e sequenciais num banco de dados `mysql`. Serão três colunas: 'id', 'date', 'raw_json'.
+    Dependências: - Container Python
+                  - Container MySQL
+
+3. Análise
+    Função: Ambiente de desenvolvimento para análise de dados. Garantir que os dados estajam preparados para análise e separados da captura
+
+4. Web GUI
+    Função: Interface para monitorar a captura e sinalizar intervenções necessárias
+
